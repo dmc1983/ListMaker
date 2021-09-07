@@ -14,6 +14,7 @@ import com.raywenderlich.listmaker.TaskList
 import com.raywenderlich.listmaker.databinding.ListDetailActivityBinding
 import com.raywenderlich.listmaker.ui.main.MainViewModelFactory
 import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailFragment
+import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailFragment.Companion.newInstance
 import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailViewModel
 
 class ListDetailActivity : AppCompatActivity() {
@@ -37,10 +38,10 @@ class ListDetailActivity : AppCompatActivity() {
         binding.addTaskButton.setOnClickListener {
             showCreateTaskDialog()
         }
-        viewModel = ViewModelProvider(this).get(ListDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
 
-        list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
+
         title = viewModel.list.name
 
 
