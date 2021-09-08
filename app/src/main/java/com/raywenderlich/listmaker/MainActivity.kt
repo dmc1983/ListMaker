@@ -4,12 +4,10 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.text.InputType
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-
 import com.raywenderlich.listmaker.databinding.MainActivityBinding
 import com.raywenderlich.listmaker.ui.main.MainFragment
 import com.raywenderlich.listmaker.ui.main.MainViewModelFactory

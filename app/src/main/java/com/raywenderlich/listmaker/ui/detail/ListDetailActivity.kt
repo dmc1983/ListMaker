@@ -1,21 +1,20 @@
 package com.raywenderlich.listmaker.ui.main.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.preference.PreferenceManager
 import com.raywenderlich.listmaker.MainActivity
-import com.raywenderlich.listmaker.MainViewModel
+import com.raywenderlich.listmaker.ui.main.MainViewModel
 import com.raywenderlich.listmaker.R
-import com.raywenderlich.listmaker.TaskList
 import com.raywenderlich.listmaker.databinding.ListDetailActivityBinding
-import com.raywenderlich.listmaker.ui.main.MainViewModelFactory
 import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailFragment
-import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailFragment.Companion.newInstance
-import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailViewModel
+import com.raywenderlich.listmaker.ui.main.MainViewModelFactory
+
+
 
 class ListDetailActivity : AppCompatActivity() {
 
@@ -41,18 +40,20 @@ class ListDetailActivity : AppCompatActivity() {
         }
 
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            MainViewModel::class.java)
         viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
 
 
         title = viewModel.list.name
 
 
-        fragment = ListDetailFragment.newInstance()
+
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ListDetailFragment.newInstance())
+                .replace(R.id.container, fragment)
                 .commitNow()
         }
     }
