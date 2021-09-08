@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.listmaker.R
 import com.raywenderlich.listmaker.databinding.ListDetailFragmentBinding
 
+lateinit var binding: ListDetailFragmentBinding
+
 
 class ListDetailFragment : Fragment() {
 
@@ -18,10 +20,9 @@ class ListDetailFragment : Fragment() {
     }
 
     private lateinit var viewModel: ListDetailViewModel
-    lateinit var binding: ListDetailFragmentBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 

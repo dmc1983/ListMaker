@@ -31,6 +31,7 @@ class ListDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         binding = ListDetailActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -38,6 +39,8 @@ class ListDetailActivity : AppCompatActivity() {
         binding.addTaskButton.setOnClickListener {
             showCreateTaskDialog()
         }
+
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
 
