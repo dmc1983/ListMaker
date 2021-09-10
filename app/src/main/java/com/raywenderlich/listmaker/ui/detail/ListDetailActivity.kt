@@ -11,9 +11,9 @@ import com.raywenderlich.listmaker.MainActivity
 import com.raywenderlich.listmaker.ui.main.MainViewModel
 import com.raywenderlich.listmaker.R
 import com.raywenderlich.listmaker.databinding.ListDetailActivityBinding
+import com.raywenderlich.listmaker.ui.detail.ui.detail.ListDetailViewModel
 import com.raywenderlich.listmaker.ui.main.ui.detail.ui.detail.ListDetailFragment
 import com.raywenderlich.listmaker.ui.main.MainViewModelFactory
-
 
 
 class ListDetailActivity : AppCompatActivity() {
@@ -40,10 +40,10 @@ class ListDetailActivity : AppCompatActivity() {
         }
 
 
-        viewModel = ViewModelProvider(
-            this,
-            MainViewModel::class.java)
-        viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
+//        viewModel = ViewModelProvider(
+//            this,
+//            MainViewModel::class.java)
+//        viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
 
 
         title = viewModel.list.name
@@ -53,7 +53,7 @@ class ListDetailActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)
+        .replace(R.id.detail_container, ListDetailFragment.newInstance())
                 .commitNow()
         }
     }
