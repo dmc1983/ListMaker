@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.raywenderlich.listmaker.databinding.MainActivityBinding
@@ -42,7 +43,7 @@ MainFragment.MainFragmentInteractionListener{
                 .commitNow()
         }
 
-        binding.fabButton.setOnClickListener {
+        binding.fabButton?.setOnClickListener {
             showCreateListDialog()
         }
 

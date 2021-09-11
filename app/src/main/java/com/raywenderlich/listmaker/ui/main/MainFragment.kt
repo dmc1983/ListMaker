@@ -18,9 +18,10 @@ import com.raywenderlich.listmaker.ui.ListSelectionRecyclerViewAdapter
 
 
 
-class MainFragment(val clickListener : MainFragmentInteractionListener) : Fragment(),
+class MainFragment : Fragment(),
     ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener{
 
+    lateinit var clickListener: MainFragmentInteractionListener
 
     interface MainFragmentInteractionListener {
         fun listItemTapped(list: TaskList)
@@ -29,7 +30,7 @@ class MainFragment(val clickListener : MainFragmentInteractionListener) : Fragme
     private lateinit var binding: MainFragmentBinding
 
     companion object {
-        fun newInstance(clickListener: MainFragmentInteractionListener) = MainFragment(clickListener)
+        fun newInstance()= MainFragment()
     }
 
     private lateinit var viewModel: MainViewModel
