@@ -8,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.raywenderlich.listmaker.MainActivity
-import com.raywenderlich.listmaker.ui.main.MainViewModel
 import com.raywenderlich.listmaker.R
 import com.raywenderlich.listmaker.databinding.ListDetailActivityBinding
 import com.raywenderlich.listmaker.ui.detail.ui.detail.ListDetailViewModel
@@ -19,10 +18,9 @@ import com.raywenderlich.listmaker.ui.main.MainViewModelFactory
 class ListDetailActivity : AppCompatActivity() {
 
 
-
     lateinit var binding: ListDetailActivityBinding
 
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModel: ListDetailViewModel
 
     lateinit var fragment: ListDetailFragment
 
@@ -35,6 +33,8 @@ class ListDetailActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        viewModel = ViewModelProvider(this).get(ListDetailViewModel::class.java)
+        viewModel.list = intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)!!
         binding.addTaskButton.setOnClickListener {
             showCreateTaskDialog()
         }
@@ -64,18 +64,18 @@ class ListDetailActivity : AppCompatActivity() {
         taskEditText.inputType = InputType.TYPE_CLASS_TEXT
 
 
-            AlertDialog.Builder(this).setTitle(R.string.task_to_add)
+        AlertDialog.Builder(this).setTitle(R.string.task_to_add)
             .setView(taskEditText)
             .setPositiveButton(R.string.add_task) { dialog, _ ->
 
-            val task = taskEditText.text.toString()
-            viewModel.addTask(task)
+                val task = taskEditText.text.toString()
+                viewModel.addTask(task)
 
-            dialog.dismiss()
-        }
+                dialog.dismiss()
+            }
 
 
-        .create()
-        .show()
+            .create()
+            .show()
     }
 }

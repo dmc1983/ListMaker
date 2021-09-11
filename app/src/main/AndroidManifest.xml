@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ListMaker">
-        <activity
-            android:name=".ui.main.ui.detail.ListDetailActivity"
-            android:exported="true" />
+        <activity android:name=".ui.main.ui.detail.ListDetailActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

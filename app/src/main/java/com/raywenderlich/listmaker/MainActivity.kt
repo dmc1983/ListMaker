@@ -16,7 +16,7 @@ import com.raywenderlich.listmaker.ui.main.ui.detail.ListDetailActivity
 
 
 class MainActivity : AppCompatActivity(),
-MainFragment.MainFragmentInteractionListener{
+    MainFragment.MainFragmentInteractionListener {
 
 
     private lateinit var binding: MainActivityBinding
@@ -24,12 +24,13 @@ MainFragment.MainFragmentInteractionListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_detail_activity)
 
 
-        viewModel = ViewModelProvider(this,
+        viewModel = ViewModelProvider(
+            this,
 
-            MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(this)))
+            MainViewModelFactory(PreferenceManager.getDefaultSharedPreferences(this))
+        )
             .get(MainViewModel::class.java)
 
         binding = MainActivityBinding.inflate(layoutInflater)
@@ -37,17 +38,26 @@ MainFragment.MainFragmentInteractionListener{
         setContentView(view)
 
         if (savedInstanceState == null) {
-            val mainFragment = MainFragment.newInstance(this)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, mainFragment)
-                .commitNow()
+
+            val mainFragment = MainFragment.newInstance()
+            mainFragment.clickListener = this
+
+            val fragmentContainerViewId: Int = if (binding.mainFragmentContainer == null) {
+                R.id.detail_container
+            } else {
+                R.id.main_fragment_container
+            }
+
+
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(fragmentContainerViewId, mainFragment)
+            }
         }
 
         binding.fabButton?.setOnClickListener {
             showCreateListDialog()
         }
-
-
 
 
     }
@@ -76,7 +86,7 @@ MainFragment.MainFragmentInteractionListener{
         builder.create().show()
     }
 
-    private fun showListDetail(list: TaskList){
+    private fun showListDetail(list: TaskList) {
 
         val listDetailIntent = Intent(this, ListDetailActivity::class.java)
 
@@ -88,6 +98,7 @@ MainFragment.MainFragmentInteractionListener{
     companion object {
         const val INTENT_LIST_KEY = "list"
     }
+
     override fun listItemTapped(list: TaskList) {
         showListDetail(list)
     }
