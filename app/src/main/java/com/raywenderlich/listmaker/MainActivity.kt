@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.widget.EditText
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity(),
         val view = binding.root
         setContentView(view)
 
+        Log.i("MainActivity", viewModel.toString())
+
         if (savedInstanceState == null) {
 
             val mainFragment = MainFragment.newInstance()
@@ -53,14 +56,43 @@ class MainActivity : AppCompatActivity(),
                 setReorderingAllowed(true)
                 add(fragmentContainerViewId, mainFragment)
             }
-        }
-
+            val mainFragment = MainFragment.newInstance(this)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.detail_container, mainFragment)
+                .commitNow()
+            }
         binding.fabButton?.setOnClickListener {
             showCreateListDialog()
+
         }
-
-
     }
+
+    override fun onBackPressed() {
+
+
+        val listDetailFragment =
+            supportFragmentManager.findFragmentById(R.id.list_detail_fragment_container)
+
+
+        if (listDetailFragment == null) {
+            super.onBackPressed()
+        } else {
+
+            title = resources.getString(R.string.app_name)
+
+
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                remove(listDetailFragment)
+            }
+
+
+            binding.fabButton.setOnClickListener {
+                showCreateListDialog()
+            }
+        }
+    }
+
 
     private fun showCreateListDialog() {
 

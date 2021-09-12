@@ -11,7 +11,6 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.listmaker.MainViewModel
 import com.raywenderlich.listmaker.TaskList
-
 import com.raywenderlich.listmaker.databinding.MainFragmentBinding
 import com.raywenderlich.listmaker.ui.ListSelectionRecyclerViewAdapter
 
