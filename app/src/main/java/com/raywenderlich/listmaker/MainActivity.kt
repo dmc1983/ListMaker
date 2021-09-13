@@ -56,13 +56,8 @@ class MainActivity : AppCompatActivity(),
                 setReorderingAllowed(true)
                 add(fragmentContainerViewId, mainFragment)
             }
-            val mainFragment = MainFragment.newInstance(this)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.detail_container, mainFragment)
-                .commitNow()
-            }
-        binding.fabButton?.setOnClickListener {
-            showCreateListDialog()
+
+
 
         }
     }
